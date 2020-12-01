@@ -1,0 +1,3 @@
+/home/actuday/dev/pixel/build/CMakeFiles/rebuild_cache.dir
+/home/actuday/dev/pixel/build/CMakeFiles/edit_cache.dir
+/home/actuday/dev/pixel/build/CMakeFiles/app.dir
