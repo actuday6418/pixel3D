@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/actuday/dev/pixel/main.cpp" "/home/actuday/dev/pixel/build/CMakeFiles/app.dir/main.cpp.o"
+  "/home/actuday/dev/pixel3D/main.cpp" "/home/actuday/dev/pixel3D/build/CMakeFiles/app.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

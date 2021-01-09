@@ -6,43 +6,19 @@
 
 #IncludeRegexTransform: 
 
-/home/actuday/dev/pixel/include/A0/pixel.h
+/home/actuday/dev/pixel3D/include/A0/pixel.h
 SFML/Graphics.hpp
 -
 iostream
 -
 
-/home/actuday/dev/pixel/include/A1/application.h
-SFML/Audio.hpp
--
-cmath
--
+/home/actuday/dev/pixel3D/main.cpp
+include/A0/pixel.h
+/home/actuday/dev/pixel3D/include/A0/pixel.h
 iostream
 -
-string
--
-../A0/pixel.h
-/home/actuday/dev/pixel/include/A0/pixel.h
-sprite.h
-/home/actuday/dev/pixel/include/A1/sprite.h
-
-/home/actuday/dev/pixel/include/A1/sprite.h
-fstream
--
-iostream
+math.h
 -
 vector
 -
-
-/home/actuday/dev/pixel/include/utilities/background_generators.h
-cstdlib
--
-
-/home/actuday/dev/pixel/main.cpp
-iostream
--
-include/A1/application.h
-/home/actuday/dev/pixel/include/A1/application.h
-include/utilities/background_generators.h
-/home/actuday/dev/pixel/include/utilities/background_generators.h
 
