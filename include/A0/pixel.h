@@ -4,6 +4,8 @@
 #include<SFML/Graphics.hpp>
 #include<iostream>
 
+#define SIDE 64
+
 class pixelMap {
  protected:
 	sf::VertexArray varray;
@@ -88,7 +90,12 @@ class pixelMap {
 	//set the Color of a particular pixel at location (x,y)
 	void setColor(int x, int y, uint8_t color,
 		      std::vector < uint8_t > &array) {
-		array[y * 64 + x] = color;
+		if (x < SIDE && y < SIDE) {
+			array[y * SIDE + x] = color;
+		} else {
+			std::cout << "Set color call out of bounds - " << x <<
+			    " " << y << std::endl;
+		}
 	}
 
 	//called every frame to set color of each pixel.
