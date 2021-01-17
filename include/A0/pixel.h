@@ -4,7 +4,7 @@
 #include<SFML/Graphics.hpp>
 #include<iostream>
 
-#define SIDE 64
+//SIDE is to be defined by the user
 
 class pixelMap {
  protected:
@@ -16,8 +16,8 @@ class pixelMap {
 	int FPS;
 
  public:
-	 pixelMap():varray(sf::Quads, 16384), window(sf::VideoMode(640, 640),
-						     "New Window") {
+	 pixelMap():varray(sf::Quads, SIDE * SIDE * 4),
+	    window(sf::VideoMode(640, 640), "New Window") {
 		setPositions();
 		tik_factor = 1;
 		FPS = 60;
@@ -27,6 +27,7 @@ class pixelMap {
 	void setTitle(const std::string & title) {
 		window.setTitle(title);
 	}
+
 	void setFPS(unsigned int FPS) {
 		window.setFramerateLimit(FPS);
 		this->FPS = FPS;
@@ -73,17 +74,17 @@ class pixelMap {
 	}
 	//called once during construction to set positions of each pixel
 	void setPositions() {
-		for (int k = 0; k < 16384; k += 4) {
-			int i = (k % 256) / 4;
-			int j = k / 256;
+		for (int k = 0; k < SIDE * SIDE * 4; k += 4) {
+			int i = (k % (SIDE * 4)) / 4;
+			int j = k / (SIDE * 4);
 
-			varray[k].position = sf::Vector2f(i * 10, j * 10);
+			varray[k].position = sf::Vector2f(i * THICC, j * THICC);
 			varray[k + 1].position =
-			    sf::Vector2f(i * 10 + 10, j * 10);
+			    sf::Vector2f(i * THICC + THICC, j * THICC);
 			varray[k + 2].position =
-			    sf::Vector2f(i * 10 + 10, j * 10 + 10);
+			    sf::Vector2f(i * THICC + THICC, j * THICC + THICC);
 			varray[k + 3].position =
-			    sf::Vector2f(i * 10, j * 10 + 10);
+			    sf::Vector2f(i * THICC, j * THICC + THICC);
 		}
 	}
 
@@ -100,9 +101,9 @@ class pixelMap {
 
 	//called every frame to set color of each pixel.
 	void setColors() {
-		std::vector < uint8_t > array(4096, 0);
+		std::vector < uint8_t > array(SIDE * SIDE, 0);
 		mapper(array);
-		for (int k = 0, i = 0; k < 16384; k += 4, i++) {
+		for (int k = 0, i = 0; k < SIDE * SIDE * 4; k += 4, i++) {
 			varray[k].color =
 			    sf::Color(array[i], array[i], array[i],
 				      (uint8_t) 255);

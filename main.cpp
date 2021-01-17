@@ -1,3 +1,6 @@
+#define SIDE 64
+#define THICC 8
+
 #include "include/A0/pixel.h"
 #include <iostream>
 #include<cmath>
@@ -21,7 +24,34 @@ class application:public pixelMap {
 	float FOVby2;
 
 	void eventsExec() override {
-		int s;
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+			for(auto &tri : body.tris){
+				for(auto &vert : tri.vertex){
+					vert.x += 1;
+				}
+			}
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+			for(auto &tri : body.tris){
+				for(auto &vert : tri.vertex){
+					vert.x -= 1;
+				}
+			}
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+			for(auto &tri : body.tris){
+				for(auto &vert : tri.vertex){
+					vert.y -= 1;
+				}
+			}
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+			for(auto &tri : body.tris){
+				for(auto &vert : tri.vertex){
+					vert.y += 1;
+				}
+			}
+		}
 	};
 	//draws lines
 	void drawLine(vector3 v1, vector3 v2, std::vector<uint8_t> &array){
