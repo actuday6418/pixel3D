@@ -1,5 +1,5 @@
-#define SIDE 64
-#define THICC 8
+#define SIDE 1024
+#define THICC 2
 
 #include "include/A0/pixel.h"
 #include <iostream>
@@ -23,13 +23,23 @@ class application:public pixelMap {
 	mesh body;
 	float FOVby2;
 
-	void eventsExec() override {
+	bool eventsExec() override {
+		bool returnVal = false;
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
 			for(auto &tri : body.tris){
 				for(auto &vert : tri.vertex){
 					vert.x += 1;
 				}
 			}
+			returnVal = true;
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+			FOVby2 += 0.01;
+			returnVal = true;
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+			FOVby2 -= 0.01;std::cout<<"DE"<<std::endl;
+			returnVal = true;
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
 			for(auto &tri : body.tris){
@@ -37,6 +47,7 @@ class application:public pixelMap {
 					vert.x -= 1;
 				}
 			}
+			returnVal = true;
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
 			for(auto &tri : body.tris){
@@ -44,6 +55,7 @@ class application:public pixelMap {
 					vert.y -= 1;
 				}
 			}
+			returnVal = true;
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
 			for(auto &tri : body.tris){
@@ -51,12 +63,14 @@ class application:public pixelMap {
 					vert.y += 1;
 				}
 			}
+			returnVal = true;
 		}
+		return returnVal;
 	};
 	//draws lines
 	void drawLine(vector3 v1, vector3 v2, std::vector<uint8_t> &array){
-		int deltaX = v2.x - v1.x;
-		int deltaY = v2.y - v1.y;
+		float deltaX = v2.x - v1.x;
+		float deltaY = v2.y - v1.y;
 		float slopeErr = 0;
 		if(deltaX == 0){
 			int X = v1.x;
@@ -151,6 +165,7 @@ class application:public pixelMap {
 		for (auto & x:array) {
 			x = 100;
 		}
+		std::cout<<"-----------------------------\n";
 		//Draw object
 		for (auto tri :body.tris) {
 			triangle projectedTri;
@@ -158,6 +173,7 @@ class application:public pixelMap {
 				//represents projected coordinates
 				projectedTri.vertex[i].x = (tri.vertex[i].x)/(2*std::tan(FOVby2)*tri.vertex[i].z);
 				projectedTri.vertex[i].y = (tri.vertex[i].y)/(2*std::tan(FOVby2)*tri.vertex[i].z);
+				std::cout<<"X: "<<projectedTri.vertex[i].x<<" Y: "<<projectedTri.vertex[i].y<<std::endl;
 			}
 			drawLine(projectedTri.vertex[0], projectedTri.vertex[1], array);
 			drawLine(projectedTri.vertex[1], projectedTri.vertex[2], array);
@@ -168,31 +184,37 @@ class application:public pixelMap {
 	public:
 	application() {
 		body.tris = {
-			{1.0f, 1.0f, 1.0f, 1.0f, 2.0f, 1.0f, 50.0f, 50.0f, 1.0f},	//Triangle halves
-			{1.0f, 1.0f, 1.0f, 50.0f, 50.0f, 1.0f, 50.0f, 1.0f, 1.0f},	//for each face 
+		//SOUTH
+		{ 1.0f, 1.0f, 1.0f,    1.0f, 10.0f, 1.0f,    10.0f, 10.0f, 1.0f },//Triangle halves for each 
+		{ 1.0f, 1.0f, 1.0f,    10.0f, 10.0f, 1.0f,    10.0f, 1.0f, 1.0f },//face
 
-			{50.0f, 1.0f, 1.0f, 50.0f, 50.0f, 1.0f, 50.0f, 50.0f, 2.0f},	//of a cube
-			{50.0f, 1.0f, 1.0f, 50.0f, 50.0f, 2.0f, 50.0f, 1.0f, 2.0f},
+		// EAST                                                      
+		{ 10.0f, 1.0f, 1.0f,    10.0f, 10.0f, 1.0f,    10.0f, 10.0f, 10.0f },
+		{ 10.0f, 1.0f, 1.0f,    10.0f, 10.0f, 10.0f,    10.0f, 1.0f, 10.0f },
 
-			{50.0f, 1.0f, 2.0f, 50.0f, 50.0f, 2.0f, 1.0f, 50.0f, 2.0f},
-			{50.0f, 1.0f, 2.0f, 1.0f, 50.0f, 2.0f, 1.0f, 1.0f, 2.0f},
+		// NORTH                                                     
+		{ 10.0f, 1.0f, 10.0f,    10.0f, 10.0f, 10.0f,    1.0f, 10.0f, 10.0f },
+		{ 10.0f, 1.0f, 10.0f,    1.0f, 10.0f, 10.0f,    1.0f, 1.0f, 10.0f },
 
-			{1.0f, 1.0f, 2.0f, 1.0f, 50.0f, 2.0f, 1.0f, 50.0f, 1.0f},
-			{1.0f, 1.0f, 2.0f, 1.0f, 50.0f, 1.0f, 1.0f, 1.0f, 1.0f},
+		// WEST                                                      
+		{ 1.0f, 1.0f, 10.0f,    1.0f, 10.0f, 10.0f,    1.0f, 10.0f, 1.0f },
+		{ 1.0f, 1.0f, 10.0f,    1.0f, 10.0f, 1.0f,    1.0f, 1.0f, 1.0f },
 
-			{1.0f, 50.0f, 1.0f, 1.0f, 50.0f, 2.0f, 50.0f, 50.0f, 2.0f},
-			{1.0f, 50.0f, 1.0f, 50.0f, 50.0f, 2.0f, 50.0f, 50.0f, 1.0f},
-
-			{50.0f, 1.0f, 2.0f, 1.0f, 1.0f, 2.0f, 1.0f, 1.0f, 1.0f},
-			{50.0f, 1.0f, 2.0f, 1.0f, 1.0f, 1.0f, 50.0f, 1.0f, 1.0f},
+		// TOP                                                       
+		{ 1.0f, 10.0f, 1.0f,    1.0f, 10.0f, 10.0f,    10.0f, 10.0f, 10.0f },
+		{ 1.0f, 10.0f, 1.0f,    10.0f, 10.0f, 10.0f,    10.0f, 10.0f, 1.0f },
+		//BOTTOM
+		{ 10.0f, 1.0f, 10.0f,    1.0f, 1.0f, 10.0f,    1.0f, 1.0f, 1.0f },
+		{ 10.0f, 1.0f, 10.0f,    1.0f, 1.0f, 1.0f,    10.0f, 1.0f, 1.0f },
 		};
-		FOVby2 = 0.7853; //45 degree angle, so fov is 90 degrees
+		FOVby2 = 0.2;//0.7853; //45 degree angle, so fov is 90 degrees
 	}
 };
 
 int main()
 {
 	application app;
+	app.setSleep(0);
 	app.setTitle("3D Renderer");
 	app.mainLoop();
 }

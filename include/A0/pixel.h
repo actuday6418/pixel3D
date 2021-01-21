@@ -10,8 +10,7 @@ class pixelMap {
  protected:
 	sf::VertexArray varray;
 	sf::RenderWindow window;
-	bool log;
-	int tik_factor;
+	int sleepTime = 10;
 	//default value is sixty
 	int FPS;
 
@@ -19,57 +18,37 @@ class pixelMap {
 	 pixelMap():varray(sf::Quads, SIDE * SIDE * 4),
 	    window(sf::VideoMode(640, 640), "New Window") {
 		setPositions();
-		tik_factor = 1;
 		FPS = 60;
-		log = false;
 	};
 
 	void setTitle(const std::string & title) {
 		window.setTitle(title);
 	}
 
-	void setFPS(unsigned int FPS) {
-		window.setFramerateLimit(FPS);
-		this->FPS = FPS;
-	}
-	void logger() {
-		log = true;
+	void setSleep(unsigned int sleepTime) {
+		this->sleepTime = sleepTime;
 	}
 	//virtual function that has to be overriden by the user for updating pixel map each frame.
 	virtual void mapper(std::vector < uint8_t > &array) = 0;
-	virtual void eventsExec() = 0;
+	virtual bool eventsExec() = 0;
 
-	void setTickFactor(int fac) {
-		tik_factor = fac;
-	}
 	//contains main loop
 	void mainLoop() {
-		sf::Clock clock;
-		int tick = 1;
-		int delta = 0, prev_sec = 0, new_sec;
-
+		sf::Event event;
+		bool isFirst = true;
 		while (window.isOpen()) {
-			if (tick == FPS / tik_factor) {
-				eventsExec();
-				new_sec =
-				    (int)clock.getElapsedTime().asSeconds();
-				delta = new_sec - prev_sec;
-				if (log)
-					std::cout << "Time to " << FPS <<
-					    " frames: " << delta << std::endl;
-				tick = 1;
+			if (isFirst || eventsExec()) {
+				isFirst = false;
+				setColors();
+				window.clear();
+				window.draw(varray);
+				window.display();
+				sf::sleep(sf::milliseconds(sleepTime));
 			}
-			sf::Event event;
 			while (window.pollEvent(event)) {
 				if (event.type == sf::Event::Closed)
 					window.close();
 			}
-
-			window.clear();
-			setColors();
-			window.draw(varray);
-			window.display();
-			tick++;
 		}
 	}
 	//called once during construction to set positions of each pixel
