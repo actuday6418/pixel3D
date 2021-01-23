@@ -1,5 +1,5 @@
-#define SIDE 1024
-#define THICC 2
+#define SIDE 512
+#define THICC 1.25
 
 #include "include/A0/pixel.h"
 #include <iostream>
@@ -11,11 +11,90 @@ struct vector3 {
 };
 
 struct triangle {
-	vector3 vertex[3];
+	vector3 vertices[3];
 };
 
 struct mesh {
+	vector3 origin;
 	std::vector < triangle > tris;
+
+	void calcOrigin(){
+		origin.x = 0;
+		origin.y = 0;
+		origin.z = 0;
+		int nop = 0;//No of points in mesh
+		for(auto const &tri : tris){
+			for(auto const &vert : tri.vertices){
+				nop++;
+				origin.x += vert.x;
+				origin.y += vert.y;
+				origin.z += vert.z;
+			}
+		}
+		origin.x /= (float)nop;
+		origin.y /= (float)nop;
+		origin.z /= (float)nop;
+	}
+
+	//Zero axis is X, 1 Y, and 2 is Z.
+	void rotateMesh(int axis, float dTheta){
+
+		/*
+		 * ============ Equations derived from rotation transform ======
+		 *
+		 * ============ Y axis rotation ===========
+		 *  posX = posX*cosdY + posZ*sindY
+		 *  posY = posY
+		 *  posZ = posX*cosdY + posZ*sindY
+		 *  =======================================
+		 *
+		 * ============ X axis rotation ===========
+		 *  posX = posX
+		 *  posY = posY*cosdX - posZ*sindX
+		 *  posZ = posY*sindX + posZ*cosdX
+		 *  =======================================
+		 *
+		 * ============ Z axis rotation ===========
+		 *  posX = posX*cosdZ - posY*sindZ
+		 *  posY = posX*sindZ + posY*cosdZ
+		 *  posZ = posZ
+		 *  =======================================
+		 * ============================================================
+		 */
+
+		float cosTheta = std::cos(dTheta);
+		float sinTheta = std::sin(dTheta);
+
+		switch(axis){
+			case 0:	//case: X axis
+				for(auto &tri : tris){
+					for(auto &vert : tri.vertices){
+						//vert.x unchanged
+						vert.y = vert.y*cosTheta - vert.z*sinTheta;
+						vert.z = vert.y*sinTheta + vert.z*cosTheta;
+					}
+				}
+				break;
+			case 1: //case: Y axis
+				for(auto &tri : tris){
+					for(auto &vert : tri.vertices){
+						vert.x = vert.x*cosTheta + vert.z*sinTheta;
+						//vert.y unchanged
+						vert.z = vert.x*cosTheta + vert.z*sinTheta;
+					}
+				}
+				break;
+			case 2: //case: Z axis
+				for(auto &tri : tris){
+					for(auto &vert : tri.vertices){
+						vert.x = vert.x*cosTheta - vert.y*sinTheta;
+						vert.y = vert.x*sinTheta + vert.y*cosTheta;
+						//vert.z unchanged
+					}
+				}
+				break;
+		}
+	}
 };
 
 class application:public pixelMap {
@@ -27,23 +106,23 @@ class application:public pixelMap {
 		bool returnVal = false;
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
 			for(auto &tri : body.tris){
-				for(auto &vert : tri.vertex){
+				for(auto &vert : tri.vertices){
 					vert.x += 1;
 				}
 			}
 			returnVal = true;
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-			FOVby2 += 0.01;
+			FOVby2 += 0.001;
 			returnVal = true;
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-			FOVby2 -= 0.01;std::cout<<"DE"<<std::endl;
+			FOVby2 -= 0.001;
 			returnVal = true;
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
 			for(auto &tri : body.tris){
-				for(auto &vert : tri.vertex){
+				for(auto &vert : tri.vertices){
 					vert.x -= 1;
 				}
 			}
@@ -51,7 +130,7 @@ class application:public pixelMap {
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
 			for(auto &tri : body.tris){
-				for(auto &vert : tri.vertex){
+				for(auto &vert : tri.vertices){
 					vert.y -= 1;
 				}
 			}
@@ -59,14 +138,20 @@ class application:public pixelMap {
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
 			for(auto &tri : body.tris){
-				for(auto &vert : tri.vertex){
+				for(auto &vert : tri.vertices){
 					vert.y += 1;
 				}
 			}
 			returnVal = true;
 		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
+			body.rotateMesh(2,0.01);
+			returnVal = true;
+		}
+
 		return returnVal;
 	};
+
 	//draws lines
 	void drawLine(vector3 v1, vector3 v2, std::vector<uint8_t> &array){
 		float deltaX = v2.x - v1.x;
@@ -165,49 +250,54 @@ class application:public pixelMap {
 		for (auto & x:array) {
 			x = 100;
 		}
-		std::cout<<"-----------------------------\n";
 		//Draw object
 		for (auto tri :body.tris) {
 			triangle projectedTri;
 			for(int i=0;i<3;i++){
 				//represents projected coordinates
-				projectedTri.vertex[i].x = (tri.vertex[i].x)/(2*std::tan(FOVby2)*tri.vertex[i].z);
-				projectedTri.vertex[i].y = (tri.vertex[i].y)/(2*std::tan(FOVby2)*tri.vertex[i].z);
-				std::cout<<"X: "<<projectedTri.vertex[i].x<<" Y: "<<projectedTri.vertex[i].y<<std::endl;
+				projectedTri.vertices[i].x = (tri.vertices[i].x)/(2*std::tan(FOVby2)*tri.vertices[i].z);
+				projectedTri.vertices[i].y = (tri.vertices[i].y)/(2*std::tan(FOVby2)*tri.vertices[i].z);
 			}
-			drawLine(projectedTri.vertex[0], projectedTri.vertex[1], array);
-			drawLine(projectedTri.vertex[1], projectedTri.vertex[2], array);
-			drawLine(projectedTri.vertex[2], projectedTri.vertex[0], array);
+			projectedTri.vertices[0].x += SIDE/2;
+			projectedTri.vertices[1].x += SIDE/2;
+			projectedTri.vertices[2].x += SIDE/2;
+			projectedTri.vertices[0].y += SIDE/2;
+			projectedTri.vertices[1].y += SIDE/2;
+			projectedTri.vertices[2].y += SIDE/2;
+			drawLine(projectedTri.vertices[0], projectedTri.vertices[1], array);
+			drawLine(projectedTri.vertices[1], projectedTri.vertices[2], array);
+			drawLine(projectedTri.vertices[2], projectedTri.vertices[0], array);
 		}
 	}
 
 	public:
 	application() {
 		body.tris = {
-		//SOUTH
-		{ 1.0f, 1.0f, 1.0f,    1.0f, 10.0f, 1.0f,    10.0f, 10.0f, 1.0f },//Triangle halves for each 
-		{ 1.0f, 1.0f, 1.0f,    10.0f, 10.0f, 1.0f,    10.0f, 1.0f, 1.0f },//face
+			//SOUTH
+			{ 1.0f, 1.0f, 1.0f,    1.0f, 4.0f, 1.0f,    4.0f, 4.0f, 1.0f },//Triangle halves for each 
+			{ 1.0f, 1.0f, 1.0f,    4.0f, 4.0f, 1.0f,    4.0f, 1.0f, 1.0f },//face
 
-		// EAST                                                      
-		{ 10.0f, 1.0f, 1.0f,    10.0f, 10.0f, 1.0f,    10.0f, 10.0f, 10.0f },
-		{ 10.0f, 1.0f, 1.0f,    10.0f, 10.0f, 10.0f,    10.0f, 1.0f, 10.0f },
+			// EAST                                                      
+			{ 4.0f, 1.0f, 1.0f,    4.0f, 4.0f, 1.0f,    4.0f, 4.0f, 2.0f },
+			{ 4.0f, 1.0f, 1.0f,    4.0f, 4.0f, 2.0f,    4.0f, 1.0f, 2.0f },
 
-		// NORTH                                                     
-		{ 10.0f, 1.0f, 10.0f,    10.0f, 10.0f, 10.0f,    1.0f, 10.0f, 10.0f },
-		{ 10.0f, 1.0f, 10.0f,    1.0f, 10.0f, 10.0f,    1.0f, 1.0f, 10.0f },
+			// NORTH                                                     
+			{ 4.0f, 1.0f, 2.0f,    4.0f, 4.0f, 2.0f,    1.0f, 4.0f, 2.0f },
+			{ 4.0f, 1.0f, 2.0f,    1.0f, 4.0f, 2.0f,    1.0f, 1.0f, 2.0f },
 
-		// WEST                                                      
-		{ 1.0f, 1.0f, 10.0f,    1.0f, 10.0f, 10.0f,    1.0f, 10.0f, 1.0f },
-		{ 1.0f, 1.0f, 10.0f,    1.0f, 10.0f, 1.0f,    1.0f, 1.0f, 1.0f },
+			// WEST                                                      
+			{ 1.0f, 1.0f, 2.0f,    1.0f, 4.0f, 2.0f,    1.0f, 4.0f, 1.0f },
+			{ 1.0f, 1.0f, 2.0f,    1.0f, 4.0f, 1.0f,    1.0f, 1.0f, 1.0f },
 
-		// TOP                                                       
-		{ 1.0f, 10.0f, 1.0f,    1.0f, 10.0f, 10.0f,    10.0f, 10.0f, 10.0f },
-		{ 1.0f, 10.0f, 1.0f,    10.0f, 10.0f, 10.0f,    10.0f, 10.0f, 1.0f },
-		//BOTTOM
-		{ 10.0f, 1.0f, 10.0f,    1.0f, 1.0f, 10.0f,    1.0f, 1.0f, 1.0f },
-		{ 10.0f, 1.0f, 10.0f,    1.0f, 1.0f, 1.0f,    10.0f, 1.0f, 1.0f },
+			// TOP                                                       
+			{ 1.0f, 4.0f, 1.0f,    1.0f, 4.0f, 2.0f,    4.0f, 4.0f, 2.0f },
+			{ 1.0f, 4.0f, 1.0f,    4.0f, 4.0f, 2.0f,    4.0f, 4.0f, 1.0f },
+			//BOTTOM
+			{ 4.0f, 1.0f, 2.0f,    1.0f, 1.0f, 2.0f,    1.0f, 1.0f, 1.0f },
+			{ 4.0f, 1.0f, 2.0f,    1.0f, 1.0f, 1.0f,    4.0f, 1.0f, 1.0f },
 		};
-		FOVby2 = 0.2;//0.7853; //45 degree angle, so fov is 90 degrees
+		body.calcOrigin();
+		FOVby2 = 0.05;//0.7853; 45 degree angle, so fov is 90 degrees
 	}
 };
 
