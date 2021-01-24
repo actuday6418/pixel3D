@@ -85,13 +85,13 @@ struct mesh {
 			case 0:	//case: X axis
 				for(auto &tri : tris){
 					for(auto &vert : tri.vertices){
-						vert = vert - origin;
+						vector3 v;
+						v = vert - origin;
+						vert = v;
 						//vert.x unchanged
-						std::cout<<vert.y<<" ";
-						vert.y = vert.y*cosTheta - vert.z*sinTheta;
-						vert.z = vert.y*sinTheta + vert.z*cosTheta;
-						std::cout<<vert.y<<std::endl;
-						vert = vert + origin;
+						v.y = vert.y*cosTheta - vert.z*sinTheta;
+						v.z = vert.y*sinTheta + vert.z*cosTheta;
+						vert = v + origin;
 					}
 				}
 				break;
@@ -111,11 +111,13 @@ struct mesh {
 			case 2: //case: Z axis
 				for(auto &tri : tris){
 					for(auto &vert : tri.vertices){
+						vector3 v;
 						vert = vert - origin;
+						vert = v;
 						vert.x = vert.x*cosTheta - vert.y*sinTheta;
 						vert.y = vert.x*sinTheta + vert.y*cosTheta;
 						//vert.z unchanged
-						vert = vert + origin;
+						vert = v + origin;
 					}
 				}
 				break;
