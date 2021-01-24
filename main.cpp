@@ -8,6 +8,21 @@
 
 struct vector3 {
 	float x, y, z;
+	vector3 operator - (const vector3 &v){
+		vector3 ret;
+		ret.x = x - v.x;
+		ret.y = y - v.y;
+		ret.z = z - v.z;
+		return ret;
+	}
+	
+	vector3 operator + (const vector3 &v){
+		vector3 ret;
+		ret.x = x + v.x;
+		ret.y = y + v.y;
+		ret.z = z + v.z;
+		return ret;
+	}
 };
 
 struct triangle {
@@ -64,32 +79,43 @@ struct mesh {
 
 		float cosTheta = std::cos(dTheta);
 		float sinTheta = std::sin(dTheta);
+		calcOrigin();
 
 		switch(axis){
 			case 0:	//case: X axis
 				for(auto &tri : tris){
 					for(auto &vert : tri.vertices){
+						vert = vert - origin;
 						//vert.x unchanged
+						std::cout<<vert.y<<" ";
 						vert.y = vert.y*cosTheta - vert.z*sinTheta;
 						vert.z = vert.y*sinTheta + vert.z*cosTheta;
+						std::cout<<vert.y<<std::endl;
+						vert = vert + origin;
 					}
 				}
 				break;
 			case 1: //case: Y axis
 				for(auto &tri : tris){
 					for(auto &vert : tri.vertices){
-						vert.x = vert.x*cosTheta + vert.z*sinTheta;
-						//vert.y unchanged
-						vert.z = vert.x*cosTheta + vert.z*sinTheta;
+						vector3 v;
+						v = vert - origin;
+						vert = v;
+						v.x = vert.z*sinTheta + vert.x*cosTheta;
+						//v.y unchanged
+						v.z = vert.z*cosTheta - vert.x*sinTheta;
+						vert = v + origin;
 					}
 				}
 				break;
 			case 2: //case: Z axis
 				for(auto &tri : tris){
 					for(auto &vert : tri.vertices){
+						vert = vert - origin;
 						vert.x = vert.x*cosTheta - vert.y*sinTheta;
 						vert.y = vert.x*sinTheta + vert.y*cosTheta;
 						//vert.z unchanged
+						vert = vert + origin;
 					}
 				}
 				break;
@@ -145,8 +171,28 @@ class application:public pixelMap {
 			returnVal = true;
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
-			body.rotateMesh(2,0.01);
-			returnVal = true;
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::X)) {
+				if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
+					body.rotateMesh(0,-0.01);
+				} else {
+					body.rotateMesh(0,0.01);
+				}
+				returnVal = true;
+			} else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Y)) {
+				if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
+					body.rotateMesh(1,-0.01);
+				} else {
+					body.rotateMesh(1,0.01);
+				}
+				returnVal = true;
+			} else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
+				if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
+					body.rotateMesh(2,-0.01);
+				} else {
+					body.rotateMesh(2,0.01);
+				}
+				returnVal = true;
+			}
 		}
 
 		return returnVal;
@@ -244,6 +290,13 @@ class application:public pixelMap {
 			}
 		}
 	}
+
+	void drawTriangle(triangle tri, std::vector < uint8_t > &array){
+		drawLine(tri.vertices[0], tri.vertices[1], array);
+		drawLine(tri.vertices[1], tri.vertices[2], array);
+		drawLine(tri.vertices[2], tri.vertices[0], array);
+	}
+
 	//overriding of mapper
 	void mapper(std::vector < uint8_t > &array) override {
 		//Clear screen
@@ -264,9 +317,7 @@ class application:public pixelMap {
 			projectedTri.vertices[0].y += SIDE/2;
 			projectedTri.vertices[1].y += SIDE/2;
 			projectedTri.vertices[2].y += SIDE/2;
-			drawLine(projectedTri.vertices[0], projectedTri.vertices[1], array);
-			drawLine(projectedTri.vertices[1], projectedTri.vertices[2], array);
-			drawLine(projectedTri.vertices[2], projectedTri.vertices[0], array);
+			drawTriangle(projectedTri, array);
 		}
 	}
 
