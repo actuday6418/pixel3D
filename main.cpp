@@ -85,9 +85,8 @@ struct mesh {
 			case 0:	//case: X axis
 				for(auto &tri : tris){
 					for(auto &vert : tri.vertices){
-						vector3 v;
-						v = vert - origin;
-						vert = v;
+						vert = vert - origin;
+						vector3 v = vert;
 						//vert.x unchanged
 						v.y = vert.y*cosTheta - vert.z*sinTheta;
 						v.z = vert.y*sinTheta + vert.z*cosTheta;
@@ -98,9 +97,8 @@ struct mesh {
 			case 1: //case: Y axis
 				for(auto &tri : tris){
 					for(auto &vert : tri.vertices){
-						vector3 v;
-						v = vert - origin;
-						vert = v;
+						vert = vert - origin;
+						vector3 v = vert;
 						v.x = vert.z*sinTheta + vert.x*cosTheta;
 						//v.y unchanged
 						v.z = vert.z*cosTheta - vert.x*sinTheta;
@@ -111,11 +109,10 @@ struct mesh {
 			case 2: //case: Z axis
 				for(auto &tri : tris){
 					for(auto &vert : tri.vertices){
-						vector3 v;
 						vert = vert - origin;
-						vert = v;
-						vert.x = vert.x*cosTheta - vert.y*sinTheta;
-						vert.y = vert.x*sinTheta + vert.y*cosTheta;
+						vector3 v = vert;
+						v.x = vert.x*cosTheta - vert.y*sinTheta;
+						v.y = vert.x*sinTheta + vert.y*cosTheta;
 						//vert.z unchanged
 						vert = v + origin;
 					}
@@ -123,6 +120,51 @@ struct mesh {
 				break;
 		}
 	}
+	//Zero axis is X, 1 Y, 2 Z, 3 is all
+	void scale(int axis, float scale){
+		calcOrigin();
+		scale += 1;
+		switch (axis){
+			case 0:
+				for(auto &tri : tris){
+					for(auto &vert : tri.vertices){
+						vert.x -= origin.x;
+						vert.x *= scale;
+						vert.x += origin.x;
+					}
+				}
+				break;
+			case 1:
+				for(auto &tri : tris){
+					for(auto &vert : tri.vertices){
+						vert.y -= origin.y;
+						vert.y *= scale;
+						vert.y += origin.y;
+					}
+				}
+				break;
+			case 2:
+				for(auto &tri : tris){
+					for(auto &vert : tri.vertices){
+						vert.z -= origin.z;
+						vert.z *= scale;
+						vert.z += origin.z;
+					}
+				}
+				break;
+			case 3:
+				for(auto &tri : tris){
+					for(auto &vert : tri.vertices){
+						vert = vert - origin;
+						vert.x *= scale;
+						vert.y *= scale;
+						vert.z *= scale;
+						vert = vert + origin;
+					}
+				}
+				break;
+		}
+	}	
 };
 
 class application:public pixelMap {
@@ -132,20 +174,20 @@ class application:public pixelMap {
 
 	bool eventsExec() override {
 		bool returnVal = false;
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::K)){
+			FOVby2 += 0.001;
+			returnVal = true;
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::L)){
+			FOVby2 -= 0.001;
+			returnVal = true;
+		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
 			for(auto &tri : body.tris){
 				for(auto &vert : tri.vertices){
 					vert.x += 1;
 				}
 			}
-			returnVal = true;
-		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-			FOVby2 += 0.001;
-			returnVal = true;
-		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-			FOVby2 -= 0.001;
 			returnVal = true;
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
@@ -192,6 +234,37 @@ class application:public pixelMap {
 					body.rotateMesh(2,-0.01);
 				} else {
 					body.rotateMesh(2,0.01);
+				}
+				returnVal = true;
+			}
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::X)) {
+				if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
+					body.scale(0,-0.01);
+				} else {
+					body.scale(0,0.01);
+				}
+				returnVal = true;
+			} else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Y)) {
+				if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
+					body.scale(1,-0.01);
+				} else {
+					body.scale(1,0.01);
+				}
+				returnVal = true;
+			} else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
+				if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
+					body.scale(2,-0.01);
+				} else {
+					body.scale(2,0.01);
+				}
+				returnVal = true;
+			} else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+				if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
+					body.scale(3,-0.01);
+				} else {
+					body.scale(3,0.01);
 				}
 				returnVal = true;
 			}
