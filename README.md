@@ -1,5 +1,8 @@
 # pixel3D
-Extension of the pixel engine for rendering 3D obj files
+Extension of the pixel engine for rendering 3D obj files. Use 'a' and 's' to change your field of view and the arrow keys to move. Rotate the cube using the 'r' and a key correspoding to the three axes ('x', 'y', 'z') together. Use LShift to revers the rotation's direction.
+
+# Building
+
 
 # Primitive cube render
 (Each face is rendered as two triangles. Adjacent faces have shared double edges.)
