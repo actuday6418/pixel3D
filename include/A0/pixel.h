@@ -7,14 +7,30 @@
 //SIDE is to be defined by the user
 
 class pixelMap {
- protected:
 	sf::VertexArray varray;
 	sf::RenderWindow window;
 	int sleepTime = 10;
 	//default value is sixty
 	int FPS;
 
- public:
+	//called every frame to set color of each pixel.
+	void setColors() {
+		std::vector < uint8_t > array(SIDE * SIDE, 0);
+		mapper(array);
+		for (int k = 0, i = 0; k < SIDE * SIDE * 4; k += 4, i++) {
+			varray[k].color =
+			    sf::Color(array[i], array[i], array[i],
+				      (uint8_t) 255);
+			varray[k + 1].color =
+			    sf::Color(array[i], array[i], array[i],
+				      (uint8_t) 255);
+			varray[k + 2].color =
+			    sf::Color(array[i], array[i], array[i],
+				      (uint8_t) 255);
+			varray[k + 3].color =
+			    sf::Color(array[i], array[i], array[i],
+				      (uint8_t) 255);
+ }} public:
 	 pixelMap():varray(sf::Quads, SIDE * SIDE * 4),
 	    window(sf::VideoMode(640, 640), "New Window") {
 		setPositions();
@@ -70,31 +86,11 @@ class pixelMap {
 	//set the Color of a particular pixel at location (x,y)
 	void setColor(int x, int y, uint8_t color,
 		      std::vector < uint8_t > &array) {
-		if (x < SIDE && y < SIDE) {
+		if (x < SIDE && y < SIDE && x >= 0 && y >= 0) {
 			array[y * SIDE + x] = color;
 		} else {
-			std::cout << "Set color call out of bounds - " << x <<
-			    " " << y << std::endl;
-		}
-	}
-
-	//called every frame to set color of each pixel.
-	void setColors() {
-		std::vector < uint8_t > array(SIDE * SIDE, 0);
-		mapper(array);
-		for (int k = 0, i = 0; k < SIDE * SIDE * 4; k += 4, i++) {
-			varray[k].color =
-			    sf::Color(array[i], array[i], array[i],
-				      (uint8_t) 255);
-			varray[k + 1].color =
-			    sf::Color(array[i], array[i], array[i],
-				      (uint8_t) 255);
-			varray[k + 2].color =
-			    sf::Color(array[i], array[i], array[i],
-				      (uint8_t) 255);
-			varray[k + 3].color =
-			    sf::Color(array[i], array[i], array[i],
-				      (uint8_t) 255);
+			//std::cout << "Set color call out of bounds - " << x <<
+			//    " " << y << std::endl;
 		}
 	}
 };

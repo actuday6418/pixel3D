@@ -97,12 +97,15 @@ struct mesh {
 			case 1: //case: Y axis
 				for(auto &tri : tris){
 					for(auto &vert : tri.vertices){
-						vert = vert - origin;
+						std::cout<<"Old co-odrinates: X: "<<vert.x<<" Z: "<<vert.z;
+						//vert = vert - origin;
 						vector3 v = vert;
 						v.x = vert.z*sinTheta + vert.x*cosTheta;
 						//v.y unchanged
 						v.z = vert.z*cosTheta - vert.x*sinTheta;
-						vert = v + origin;
+						vert = v;
+						//vert = v + origin;
+						std::cout<<" New: X: "<<vert.x<<" Z: "<<vert.z<<std::endl;
 					}
 				}
 				break;
@@ -224,9 +227,9 @@ class application:public pixelMap {
 				returnVal = true;
 			} else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Y)) {
 				if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
-					body.rotateMesh(1,-0.01);
+					body.rotateMesh(1,-0.785);
 				} else {
-					body.rotateMesh(1,0.01);
+					body.rotateMesh(1,0.785);
 				}
 				returnVal = true;
 			} else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
@@ -430,7 +433,7 @@ class application:public pixelMap {
 int main()
 {
 	application app;
-	app.setSleep(0);
+	app.setSleep(500);
 	app.setTitle("3D Renderer");
 	app.mainLoop();
 }
