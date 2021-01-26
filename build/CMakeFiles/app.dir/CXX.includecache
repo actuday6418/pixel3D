@@ -17,6 +17,12 @@ include/A0/pixel.h
 /home/actuday/dev/pixel3D/include/A0/pixel.h
 iostream
 -
+X11/Xlib.h
+-
+fstream
+-
+sstream
+-
 cmath
 -
 vector

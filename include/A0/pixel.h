@@ -46,24 +46,20 @@ class pixelMap {
 	}
 	//virtual function that has to be overriden by the user for updating pixel map each frame.
 	virtual void mapper(std::vector < uint8_t > &array) = 0;
-	virtual bool eventsExec() = 0;
+	virtual bool eventsExec(sf::RenderWindow & w) = 0;
 
 	//contains main loop
 	void mainLoop() {
 		sf::Event event;
 		bool isFirst = true;
 		while (window.isOpen()) {
-			if (isFirst || eventsExec()) {
+			if (isFirst || eventsExec(window)) {
 				isFirst = false;
 				setColors();
 				window.clear();
 				window.draw(varray);
 				window.display();
 				sf::sleep(sf::milliseconds(sleepTime));
-			}
-			while (window.pollEvent(event)) {
-				if (event.type == sf::Event::Closed)
-					window.close();
 			}
 		}
 	}
