@@ -12,19 +12,25 @@ SFML/Graphics.hpp
 iostream
 -
 
-/home/actuday/dev/pixel3D/main.cpp
-include/A0/pixel.h
+/home/actuday/dev/pixel3D/include/A1/application3D.h
+../A0/pixel.h
 /home/actuday/dev/pixel3D/include/A0/pixel.h
+meshTools.h
+/home/actuday/dev/pixel3D/include/A1/meshTools.h
 iostream
--
-X11/Xlib.h
 -
 fstream
 -
 sstream
 -
-cmath
--
 vector
 -
+
+/home/actuday/dev/pixel3D/include/A1/meshTools.h
+cmath
+-
+
+/home/actuday/dev/pixel3D/main.cpp
+include/A1/application3D.h
+/home/actuday/dev/pixel3D/include/A1/application3D.h
 
