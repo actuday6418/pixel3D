@@ -1,12 +1,15 @@
 # pixel3D
-Extension of pixel for rendering 3D obj files. Use 'a' and 's' to change your field of view and the arrow keys to move. Rotate the cube using the 'r' and a key correspoding to the three axes ('x', 'y', 'z') together. Use LShift to revers the rotation's direction.
+Extension of pixel for rendering 3D obj files.
 
 # Usage
-1. Press S with an axis key (X,Y,Z) for scaling. Hold LShiftto reverse the scale transform.
-2. Press R with an axis key for rotation, and LShift for the reverse transform.
-3. Use O and P together to toggle orthographic / perspective mode (Disclaimer: Rotated mesh is rendered broken in perspective mode)
-4. Scroll to transform mesh along Z (depth) axis. (Effect is obviously apparent only in perspective view)
-5. Use K, L to change the field of view in perspective view
+. Triangulate the mesh. This program can only handle triangles.
+. Run the program
+. Enter the address of your obj file or drag it onto the text area.
+. Press S with an axis key (X,Y,Z) for scaling. Hold LShift to reverse the scale transform.
+. Press R with an axis key for rotation.
+. Use O and P together to toggle orthographic / perspective mode (Disclaimer: Rendering a rotated mesh is broken in perspective mode)
+. Scroll to transform mesh along Z (depth) axis. (Effect is obviously apparent only in perspective view)
+. Use K, L to change the field of view in perspective view
 
 # Building
     chmod a+x give_me_exec.sh
