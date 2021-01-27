@@ -75,17 +75,6 @@ CMAKE_BINARY_DIR = /home/actuday/dev/pixel3D/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
@@ -96,6 +85,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -130,6 +130,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named meta
+
+# Build rule for target.
+meta: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 meta
+.PHONY : meta
+
+# fast build rule for target.
+meta/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/meta.dir/build.make CMakeFiles/meta.dir/build
+.PHONY : meta/fast
+
+#=============================================================================
+# Target rules for targets named application3D
+
+# Build rule for target.
+application3D: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 application3D
+.PHONY : application3D
+
+# fast build rule for target.
+application3D/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/application3D.dir/build.make CMakeFiles/application3D.dir/build
+.PHONY : application3D/fast
+
+#=============================================================================
 # Target rules for targets named app
 
 # Build rule for target.
@@ -141,6 +167,60 @@ app: cmake_check_build_system
 app/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/build
 .PHONY : app/fast
+
+include/A1/application3D.o: include/A1/application3D.cpp.o
+
+.PHONY : include/A1/application3D.o
+
+# target to build an object file
+include/A1/application3D.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/application3D.dir/build.make CMakeFiles/application3D.dir/include/A1/application3D.cpp.o
+.PHONY : include/A1/application3D.cpp.o
+
+include/A1/application3D.i: include/A1/application3D.cpp.i
+
+.PHONY : include/A1/application3D.i
+
+# target to preprocess a source file
+include/A1/application3D.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/application3D.dir/build.make CMakeFiles/application3D.dir/include/A1/application3D.cpp.i
+.PHONY : include/A1/application3D.cpp.i
+
+include/A1/application3D.s: include/A1/application3D.cpp.s
+
+.PHONY : include/A1/application3D.s
+
+# target to generate assembly for a file
+include/A1/application3D.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/application3D.dir/build.make CMakeFiles/application3D.dir/include/A1/application3D.cpp.s
+.PHONY : include/A1/application3D.cpp.s
+
+include/A1/meta.o: include/A1/meta.cpp.o
+
+.PHONY : include/A1/meta.o
+
+# target to build an object file
+include/A1/meta.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/meta.dir/build.make CMakeFiles/meta.dir/include/A1/meta.cpp.o
+.PHONY : include/A1/meta.cpp.o
+
+include/A1/meta.i: include/A1/meta.cpp.i
+
+.PHONY : include/A1/meta.i
+
+# target to preprocess a source file
+include/A1/meta.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/meta.dir/build.make CMakeFiles/meta.dir/include/A1/meta.cpp.i
+.PHONY : include/A1/meta.cpp.i
+
+include/A1/meta.s: include/A1/meta.cpp.s
+
+.PHONY : include/A1/meta.s
+
+# target to generate assembly for a file
+include/A1/meta.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/meta.dir/build.make CMakeFiles/meta.dir/include/A1/meta.cpp.s
+.PHONY : include/A1/meta.cpp.s
 
 main.o: main.cpp.o
 
@@ -178,6 +258,14 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... app"
+	@echo "... application3D"
+	@echo "... meta"
+	@echo "... include/A1/application3D.o"
+	@echo "... include/A1/application3D.i"
+	@echo "... include/A1/application3D.s"
+	@echo "... include/A1/meta.o"
+	@echo "... include/A1/meta.i"
+	@echo "... include/A1/meta.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

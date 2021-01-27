@@ -98,6 +98,8 @@ app_EXTERNAL_OBJECTS =
 
 app: CMakeFiles/app.dir/main.cpp.o
 app: CMakeFiles/app.dir/build.make
+app: libmeta.a
+app: libapplication3D.a
 app: /usr/lib/libsfml-graphics.so.2.5.1
 app: /usr/lib/libsfml-audio.so.2.5.1
 app: /usr/lib/libsfml-window.so.2.5.1

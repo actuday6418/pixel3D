@@ -1,3 +1,6 @@
+#ifndef MESHTOOLS_H
+#define MESHTOOLS_H
+
 #include<cmath>
 struct vector3 {
         float x, y, z;
@@ -160,3 +163,4 @@ struct mesh {
                 }
         }
 };
+#endif

@@ -1,3 +1,5 @@
-/home/actuday/dev/pixel3D/build/CMakeFiles/rebuild_cache.dir
 /home/actuday/dev/pixel3D/build/CMakeFiles/edit_cache.dir
+/home/actuday/dev/pixel3D/build/CMakeFiles/meta.dir
+/home/actuday/dev/pixel3D/build/CMakeFiles/rebuild_cache.dir
+/home/actuday/dev/pixel3D/build/CMakeFiles/application3D.dir
 /home/actuday/dev/pixel3D/build/CMakeFiles/app.dir

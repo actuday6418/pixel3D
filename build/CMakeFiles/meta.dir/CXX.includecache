@@ -6,39 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/actuday/dev/pixel3D/include/A0/pixel.h
-SFML/Graphics.hpp
--
-iostream
--
-
-/home/actuday/dev/pixel3D/include/A1/application3D.h
-../A0/pixel.h
-/home/actuday/dev/pixel3D/include/A0/pixel.h
-meshTools.h
-/home/actuday/dev/pixel3D/include/A1/meshTools.h
-iostream
--
-fstream
--
-sstream
--
-vector
--
-
-/home/actuday/dev/pixel3D/include/A1/meshTools.h
-cmath
--
+/home/actuday/dev/pixel3D/include/A1/meta.cpp
+meta.h
+/home/actuday/dev/pixel3D/include/A1/meta.h
 
 /home/actuday/dev/pixel3D/include/A1/meta.h
 gtkmm.h
 -
-
-/home/actuday/dev/pixel3D/main.cpp
-include/A1/application3D.h
-/home/actuday/dev/pixel3D/include/A1/application3D.h
-include/A1/meta.h
-/home/actuday/dev/pixel3D/include/A1/meta.h
 
 /usr/include/atk-1.0/atk/atk-enum-types.h
 atk/atkversion.h
