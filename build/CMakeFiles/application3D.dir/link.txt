@@ -1,2 +1,2 @@
-/usr/bin/ar qc libapplication3D.a CMakeFiles/application3D.dir/include/A1/application3D.cpp.o
+/usr/bin/ar qc libapplication3D.a CMakeFiles/application3D.dir/include/application3D.cpp.o
 /usr/bin/ranlib libapplication3D.a

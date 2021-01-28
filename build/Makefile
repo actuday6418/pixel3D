@@ -168,59 +168,59 @@ app/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/build
 .PHONY : app/fast
 
-include/A1/application3D.o: include/A1/application3D.cpp.o
+include/application3D.o: include/application3D.cpp.o
 
-.PHONY : include/A1/application3D.o
-
-# target to build an object file
-include/A1/application3D.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/application3D.dir/build.make CMakeFiles/application3D.dir/include/A1/application3D.cpp.o
-.PHONY : include/A1/application3D.cpp.o
-
-include/A1/application3D.i: include/A1/application3D.cpp.i
-
-.PHONY : include/A1/application3D.i
-
-# target to preprocess a source file
-include/A1/application3D.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/application3D.dir/build.make CMakeFiles/application3D.dir/include/A1/application3D.cpp.i
-.PHONY : include/A1/application3D.cpp.i
-
-include/A1/application3D.s: include/A1/application3D.cpp.s
-
-.PHONY : include/A1/application3D.s
-
-# target to generate assembly for a file
-include/A1/application3D.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/application3D.dir/build.make CMakeFiles/application3D.dir/include/A1/application3D.cpp.s
-.PHONY : include/A1/application3D.cpp.s
-
-include/A1/meta.o: include/A1/meta.cpp.o
-
-.PHONY : include/A1/meta.o
+.PHONY : include/application3D.o
 
 # target to build an object file
-include/A1/meta.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/meta.dir/build.make CMakeFiles/meta.dir/include/A1/meta.cpp.o
-.PHONY : include/A1/meta.cpp.o
+include/application3D.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/application3D.dir/build.make CMakeFiles/application3D.dir/include/application3D.cpp.o
+.PHONY : include/application3D.cpp.o
 
-include/A1/meta.i: include/A1/meta.cpp.i
+include/application3D.i: include/application3D.cpp.i
 
-.PHONY : include/A1/meta.i
+.PHONY : include/application3D.i
 
 # target to preprocess a source file
-include/A1/meta.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/meta.dir/build.make CMakeFiles/meta.dir/include/A1/meta.cpp.i
-.PHONY : include/A1/meta.cpp.i
+include/application3D.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/application3D.dir/build.make CMakeFiles/application3D.dir/include/application3D.cpp.i
+.PHONY : include/application3D.cpp.i
 
-include/A1/meta.s: include/A1/meta.cpp.s
+include/application3D.s: include/application3D.cpp.s
 
-.PHONY : include/A1/meta.s
+.PHONY : include/application3D.s
 
 # target to generate assembly for a file
-include/A1/meta.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/meta.dir/build.make CMakeFiles/meta.dir/include/A1/meta.cpp.s
-.PHONY : include/A1/meta.cpp.s
+include/application3D.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/application3D.dir/build.make CMakeFiles/application3D.dir/include/application3D.cpp.s
+.PHONY : include/application3D.cpp.s
+
+include/meta.o: include/meta.cpp.o
+
+.PHONY : include/meta.o
+
+# target to build an object file
+include/meta.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/meta.dir/build.make CMakeFiles/meta.dir/include/meta.cpp.o
+.PHONY : include/meta.cpp.o
+
+include/meta.i: include/meta.cpp.i
+
+.PHONY : include/meta.i
+
+# target to preprocess a source file
+include/meta.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/meta.dir/build.make CMakeFiles/meta.dir/include/meta.cpp.i
+.PHONY : include/meta.cpp.i
+
+include/meta.s: include/meta.cpp.s
+
+.PHONY : include/meta.s
+
+# target to generate assembly for a file
+include/meta.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/meta.dir/build.make CMakeFiles/meta.dir/include/meta.cpp.s
+.PHONY : include/meta.cpp.s
 
 main.o: main.cpp.o
 
@@ -260,12 +260,12 @@ help:
 	@echo "... app"
 	@echo "... application3D"
 	@echo "... meta"
-	@echo "... include/A1/application3D.o"
-	@echo "... include/A1/application3D.i"
-	@echo "... include/A1/application3D.s"
-	@echo "... include/A1/meta.o"
-	@echo "... include/A1/meta.i"
-	@echo "... include/A1/meta.s"
+	@echo "... include/application3D.o"
+	@echo "... include/application3D.i"
+	@echo "... include/application3D.s"
+	@echo "... include/meta.o"
+	@echo "... include/meta.i"
+	@echo "... include/meta.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

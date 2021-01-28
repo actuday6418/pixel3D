@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/actuday/dev/pixel3D/include/A1/meta.cpp
+/home/actuday/dev/pixel3D/include/meta.cpp
 meta.h
-/home/actuday/dev/pixel3D/include/A1/meta.h
+/home/actuday/dev/pixel3D/include/meta.h
 
-/home/actuday/dev/pixel3D/include/A1/meta.h
+/home/actuday/dev/pixel3D/include/meta.h
 gtkmm.h
 -
 

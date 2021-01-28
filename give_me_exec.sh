@@ -8,15 +8,8 @@ echo 'Running the build system..'
 if cmake --build .
 then 
 	echo "${green}Build successful.."
-	echo "${white}Formatting code.."
-	cd ..
-	if indent -linux include/A0/pixel.h
-	then
-		rm include/A0/pixel.h~
-	else
-		echo "${red}Formatting failed!. Make sure you have GNU Indent!"
-	fi
 	echo "${white}Running executable.."
+	cd ..
 	./build/app
 else
 	cd ..

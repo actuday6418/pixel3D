@@ -2,6 +2,7 @@
 #define MESHTOOLS_H
 
 #include<cmath>
+#include<algorithm>
 #include<vector>
 
 struct vector3 {
@@ -119,6 +120,14 @@ struct mesh {
                                 }
                                 break;
                 }
+		std::sort(tris.begin(), tris.end(),[](triangle t1, triangle t2){
+                        if((t1.vertices[0].z + t1.vertices[1].z + t1.vertices[2].z) <
+                                        (t2.vertices[0].z + t2.vertices[1].z + t2.vertices[2].z)){
+                        return true;
+                        } else {
+                        return false;
+                        }
+                        });
         }
         //Zero axis is X, 1 Y, 2 Z, 3 is all
         void scale(int axis, float scale){

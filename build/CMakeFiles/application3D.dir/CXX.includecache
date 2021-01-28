@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/actuday/dev/pixel3D/include/A1/application3D.cpp
+/home/actuday/dev/pixel3D/include/application3D.cpp
 application3D.h
-/home/actuday/dev/pixel3D/include/A1/application3D.h
+/home/actuday/dev/pixel3D/include/application3D.h
 
-/home/actuday/dev/pixel3D/include/A1/application3D.h
+/home/actuday/dev/pixel3D/include/application3D.h
 meshTools.h
-/home/actuday/dev/pixel3D/include/A1/meshTools.h
+/home/actuday/dev/pixel3D/include/meshTools.h
 iostream
 -
 fstream
@@ -24,8 +24,10 @@ vector
 SFML/Graphics.hpp
 -
 
-/home/actuday/dev/pixel3D/include/A1/meshTools.h
+/home/actuday/dev/pixel3D/include/meshTools.h
 cmath
+-
+algorithm
 -
 vector
 -

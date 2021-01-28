@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/application3D.dir/include/A1/application3D.cpp.o"
+  "CMakeFiles/application3D.dir/include/application3D.cpp.o"
   "libapplication3D.a"
   "libapplication3D.pdb"
 )

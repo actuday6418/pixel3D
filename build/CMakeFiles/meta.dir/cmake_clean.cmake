@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/meta.dir/include/A1/meta.cpp.o"
+  "CMakeFiles/meta.dir/include/meta.cpp.o"
   "libmeta.a"
   "libmeta.pdb"
 )

@@ -76,27 +76,27 @@ include CMakeFiles/meta.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/meta.dir/flags.make
 
-CMakeFiles/meta.dir/include/A1/meta.cpp.o: CMakeFiles/meta.dir/flags.make
-CMakeFiles/meta.dir/include/A1/meta.cpp.o: ../include/A1/meta.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/actuday/dev/pixel3D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/meta.dir/include/A1/meta.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/meta.dir/include/A1/meta.cpp.o -c /home/actuday/dev/pixel3D/include/A1/meta.cpp
+CMakeFiles/meta.dir/include/meta.cpp.o: CMakeFiles/meta.dir/flags.make
+CMakeFiles/meta.dir/include/meta.cpp.o: ../include/meta.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/actuday/dev/pixel3D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/meta.dir/include/meta.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/meta.dir/include/meta.cpp.o -c /home/actuday/dev/pixel3D/include/meta.cpp
 
-CMakeFiles/meta.dir/include/A1/meta.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/meta.dir/include/A1/meta.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/actuday/dev/pixel3D/include/A1/meta.cpp > CMakeFiles/meta.dir/include/A1/meta.cpp.i
+CMakeFiles/meta.dir/include/meta.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/meta.dir/include/meta.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/actuday/dev/pixel3D/include/meta.cpp > CMakeFiles/meta.dir/include/meta.cpp.i
 
-CMakeFiles/meta.dir/include/A1/meta.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/meta.dir/include/A1/meta.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/actuday/dev/pixel3D/include/A1/meta.cpp -o CMakeFiles/meta.dir/include/A1/meta.cpp.s
+CMakeFiles/meta.dir/include/meta.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/meta.dir/include/meta.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/actuday/dev/pixel3D/include/meta.cpp -o CMakeFiles/meta.dir/include/meta.cpp.s
 
 # Object files for target meta
 meta_OBJECTS = \
-"CMakeFiles/meta.dir/include/A1/meta.cpp.o"
+"CMakeFiles/meta.dir/include/meta.cpp.o"
 
 # External object files for target meta
 meta_EXTERNAL_OBJECTS =
 
-libmeta.a: CMakeFiles/meta.dir/include/A1/meta.cpp.o
+libmeta.a: CMakeFiles/meta.dir/include/meta.cpp.o
 libmeta.a: CMakeFiles/meta.dir/build.make
 libmeta.a: CMakeFiles/meta.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/actuday/dev/pixel3D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libmeta.a"

@@ -76,27 +76,27 @@ include CMakeFiles/application3D.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/application3D.dir/flags.make
 
-CMakeFiles/application3D.dir/include/A1/application3D.cpp.o: CMakeFiles/application3D.dir/flags.make
-CMakeFiles/application3D.dir/include/A1/application3D.cpp.o: ../include/A1/application3D.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/actuday/dev/pixel3D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/application3D.dir/include/A1/application3D.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/application3D.dir/include/A1/application3D.cpp.o -c /home/actuday/dev/pixel3D/include/A1/application3D.cpp
+CMakeFiles/application3D.dir/include/application3D.cpp.o: CMakeFiles/application3D.dir/flags.make
+CMakeFiles/application3D.dir/include/application3D.cpp.o: ../include/application3D.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/actuday/dev/pixel3D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/application3D.dir/include/application3D.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/application3D.dir/include/application3D.cpp.o -c /home/actuday/dev/pixel3D/include/application3D.cpp
 
-CMakeFiles/application3D.dir/include/A1/application3D.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/application3D.dir/include/A1/application3D.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/actuday/dev/pixel3D/include/A1/application3D.cpp > CMakeFiles/application3D.dir/include/A1/application3D.cpp.i
+CMakeFiles/application3D.dir/include/application3D.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/application3D.dir/include/application3D.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/actuday/dev/pixel3D/include/application3D.cpp > CMakeFiles/application3D.dir/include/application3D.cpp.i
 
-CMakeFiles/application3D.dir/include/A1/application3D.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/application3D.dir/include/A1/application3D.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/actuday/dev/pixel3D/include/A1/application3D.cpp -o CMakeFiles/application3D.dir/include/A1/application3D.cpp.s
+CMakeFiles/application3D.dir/include/application3D.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/application3D.dir/include/application3D.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/actuday/dev/pixel3D/include/application3D.cpp -o CMakeFiles/application3D.dir/include/application3D.cpp.s
 
 # Object files for target application3D
 application3D_OBJECTS = \
-"CMakeFiles/application3D.dir/include/A1/application3D.cpp.o"
+"CMakeFiles/application3D.dir/include/application3D.cpp.o"
 
 # External object files for target application3D
 application3D_EXTERNAL_OBJECTS =
 
-libapplication3D.a: CMakeFiles/application3D.dir/include/A1/application3D.cpp.o
+libapplication3D.a: CMakeFiles/application3D.dir/include/application3D.cpp.o
 libapplication3D.a: CMakeFiles/application3D.dir/build.make
 libapplication3D.a: CMakeFiles/application3D.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/actuday/dev/pixel3D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libapplication3D.a"

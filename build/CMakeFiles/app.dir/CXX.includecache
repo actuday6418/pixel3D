@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/actuday/dev/pixel3D/include/A1/application3D.h
+/home/actuday/dev/pixel3D/include/application3D.h
 meshTools.h
-/home/actuday/dev/pixel3D/include/A1/meshTools.h
+/home/actuday/dev/pixel3D/include/meshTools.h
 iostream
 -
 fstream
@@ -20,21 +20,23 @@ vector
 SFML/Graphics.hpp
 -
 
-/home/actuday/dev/pixel3D/include/A1/meshTools.h
+/home/actuday/dev/pixel3D/include/meshTools.h
 cmath
+-
+algorithm
 -
 vector
 -
 
-/home/actuday/dev/pixel3D/include/A1/meta.h
+/home/actuday/dev/pixel3D/include/meta.h
 gtkmm.h
 -
 
 /home/actuday/dev/pixel3D/main.cpp
-include/A1/application3D.h
-/home/actuday/dev/pixel3D/include/A1/application3D.h
-include/A1/meta.h
-/home/actuday/dev/pixel3D/include/A1/meta.h
+include/application3D.h
+/home/actuday/dev/pixel3D/include/application3D.h
+include/meta.h
+/home/actuday/dev/pixel3D/include/meta.h
 
 /usr/include/atk-1.0/atk/atk-enum-types.h
 atk/atkversion.h
