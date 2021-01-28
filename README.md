@@ -1,5 +1,5 @@
-# pixel3D
-Extension of pixel for rendering 3D obj files.
+# pixel3D - SFML Branch
+This is basicaly the other thing without using pixel to render each pixel separately, but using SFML directly to render each triangle.
 
 # Usage
 1. Triangulate the mesh. This program can only handle triangles.
