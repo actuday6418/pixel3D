@@ -156,7 +156,7 @@ bool application::eventsExec(sf::RenderWindow &w) {
 
 
 void application::drawLine(vector3 v1, vector3 v2, std::vector<uint8_t> &array, uint8_t color){
-	float deltaX = v2.x - v1.x;
+	/*float deltaX = v2.x - v1.x;
 	float deltaY = v2.y - v1.y;
 	float slopeErr = 0;
 	if(deltaX == 0){
@@ -244,7 +244,47 @@ void application::drawLine(vector3 v1, vector3 v2, std::vector<uint8_t> &array, 
 				}
 			}
 		}
-	}
+	}*/
+	// y = mx + c;
+	float dx = v2.x - v1.x;
+	float dy = v2.y - v1.y;
+	if(dx > 0){
+		float m = dy/dx;
+		float c = v2.y - m * v2.x;
+		float x = v1.x;
+		float y = v1.y;
+		while(x < v2.x){
+			setColor(x,y,color,array);
+			x++;
+			y = m * x + c;
+		}
+	} else if (dx < 0){
+		float m = dy/dx;
+		float c = v2.y - m * v2.x;
+		float x = v2.x;
+		float y = v2.y;
+		while(x < v1.x){
+			setColor(x,y,color,array);
+			x++;
+			y = m * x + c;
+		}
+	} else if(dy>0){
+		float x = v1.x;
+		float y = v1.y;
+		while(y < v2.y){
+			setColor(x,y,color,array);
+			y++;
+		}	
+	} else if(dy<0){
+		float x = v2.x;
+		float y = v2.y;
+		while(y < v1.y){
+			setColor(x,y,color,array);
+			y++;
+		}	
+	} else {
+		setColor(v1.y,v2.y,color,array);
+	}	
 }
 
 void application::drawTriangle(triangle tri, std::vector < uint8_t > &array){
