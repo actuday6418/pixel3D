@@ -17,8 +17,8 @@ add_executable(app main.cpp)
 
 find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
-add_library(application3D include/A1/application3D.cpp)
-add_library(meta include/A1/meta.cpp)
+add_library(application3D include/application3D.cpp)
+add_library(meta include/meta.cpp)
 
 target_link_libraries(app meta application3D sfml-graphics sfml-audio ${GTK3_LIBRARIES})
 

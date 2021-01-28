@@ -1,5 +1,5 @@
-#include "include/A1/application3D.h"
-#include "include/A1/meta.h"
+#include "include/application3D.h"
+#include "include/meta.h"
 
 
 void doMetaScreen(std::string *str){

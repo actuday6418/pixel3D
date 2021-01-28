@@ -20,9 +20,14 @@ void application::updateGeo() {
 	int f_index=0;
 	int v_index;
 	for(auto const &tri : body.tris){
-		v_index = 0;
+		v_index = 0;        
+		vector3 A = tri.vertices[0] - tri.vertices[1];
+        	vector3 B = tri.vertices[2] - tri.vertices[1];
+		float shadeColor = (A.x * B.y - A.y * B.x)/std::sqrt(std::pow(A.y * B.z - A.z * B.y,2) + std::pow(A.z * B.x - A.x * B.z,2) + std::pow(A.x * B.y - A.y * B.x,2));
+      		shadeColor = 255*(1 - shadeColor);
 		for(auto const &vert : tri.vertices){
 			triangles[f_index * 3 + v_index].position = sf::Vector2f(vert.x,vert.y);
+			triangles[f_index * 3 + v_index].color = sf::Color((uint8_t)shadeColor,(uint8_t)shadeColor,(uint8_t)shadeColor,(uint8_t)255);
 			v_index++;
 		}
 		f_index++;

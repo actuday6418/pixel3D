@@ -9,16 +9,17 @@ struct vector3 {
 
         vector3(float x=0, float y=0, float z=0): x(x), y(y), z(z){}
 
-        vector3 operator - (const vector3 &v){
-                vector3 ret(x-v.x, y-v.y, z-v.z);
-                return ret;
-        }
-
-        vector3 operator + (const vector3 &v){
-                vector3 ret(x+v.x, y+v.y, z+v.z);
-                return ret;
-        }
 };
+
+inline vector3 operator - (const vector3 &v1, const vector3 &v){
+	vector3 ret(v1.x-v.x, v1.y-v.y, v1.z-v.z);
+	return ret;
+}
+
+inline vector3 const operator + (const vector3 &v1, const vector3 &v){
+	vector3 ret(v1.x+v.x, v1.y+v.y, v1.z+v.z);
+	return ret;
+}
 
 struct triangle {
         vector3 vertices[3];
