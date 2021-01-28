@@ -29,8 +29,7 @@ Extension of pixel for rendering 3D obj files.
 ![simplescreenrecorder](https://user-images.githubusercontent.com/56124831/105610819-ab67f200-5dd7-11eb-926a-9c60e63a8ef1.gif)
 
 # Final Result
-High poly objects don't render properly because of the glitchy drawLine function in `include/A1/application3D.h`. Time complexity is nlogn, for n as the number of polygons. Triangles, actually, cause this program only works with triangles, and not qith quads or anything else. This can be improved to linear time by adding a depth byte to each pixel instead of sorting the entire mesh before each frame. 
+High poly objects don't render properly because of the glitchy drawLine function in `include/A1/application3D.h`. Time complexity is nlogn, for n as the number of polygons. Triangles, actually, cause this program only works with triangles, and not with quads or anything else. This can be improved to linear time by adding a depth byte to each pixel instead of sorting the entire mesh before each frame.
+Update: Random lines in render has now been fixed with a new algorithm for drawing lines. 
 
 ![simplescreenrecorder (1)](https://user-images.githubusercontent.com/56124831/106021281-a1513680-60ea-11eb-98b8-c2a9f7450020.gif)
-
-
