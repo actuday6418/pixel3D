@@ -2,6 +2,8 @@
 #define MESHTOOLS_H
 
 #include<cmath>
+#include<vector>
+
 struct vector3 {
         float x, y, z;
 

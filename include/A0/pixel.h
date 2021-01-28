@@ -1,7 +1,6 @@
 #ifndef PIXEL_H
 #define PIXEL_H
 
-#include<SFML/Graphics.hpp>
 #include<iostream>
 
 //SIDE is to be defined by the user
@@ -10,6 +9,7 @@ class pixelMap {
 	sf::VertexArray varray;
 	sf::RenderWindow window;
 	int sleepTime = 10;
+#include<SFML/Graphics.hpp>
 	//default value is sixty
 	int FPS;
 

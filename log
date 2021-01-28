@@ -1,0 +1,15 @@
+Running the build system..
+[ 33%] Built target meta
+[ 50%] Building CXX object CMakeFiles/application3D.dir/include/A1/application3D.cpp.o
+/home/actuday/dev/pixel3D/include/A1/application3D.cpp: In function ‘void updateGeo()’:
+/home/actuday/dev/pixel3D/include/A1/application3D.cpp:22:24: error: ‘body’ was not declared in this scope
+   22 |  for(auto const &tri : body.tris){
+      |                        ^~~~
+/home/actuday/dev/pixel3D/include/A1/application3D.cpp:25:4: error: ‘triangles’ was not declared in this scope; did you mean ‘triangle’?
+   25 |    triangles[f_index * 3 + v_index].position = sf::Vector2f(vert.x,vert.y);
+      |    ^~~~~~~~~
+      |    triangle
+make[2]: *** [CMakeFiles/application3D.dir/build.make:82: CMakeFiles/application3D.dir/include/A1/application3D.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:126: CMakeFiles/application3D.dir/all] Error 2
+make: *** [Makefile:103: all] Error 2
+[31mBuild failed!
