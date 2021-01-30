@@ -34,3 +34,7 @@ High poly objects don't render properly because of the glitchy drawLine function
 Update: Random lines in render has now been fixed with a new algorithm for drawing lines. 
 
 ![simplescreenrecorder (1)](https://user-images.githubusercontent.com/56124831/106021281-a1513680-60ea-11eb-98b8-c2a9f7450020.gif)
+
+# A quick cleansing ritual
+![simplescreenrecorder-(3)](https://user-images.githubusercontent.com/56124831/106348546-18eeb380-62ed-11eb-9617-86998894abb1.gif)
+
