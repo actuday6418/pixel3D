@@ -1,5 +1,5 @@
 # pixel3D
-Extension of pixel for rendering 3D obj files. (Pure C++, nolibraries, and appropriate use of the STL)
+Extension of pixel for rendering 3D obj files. (Pure C++, no libraries, and appropriate use of the STL)
 
 # Usage
 1. Triangulate the mesh. This program can only handle triangles.
